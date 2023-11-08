@@ -1,6 +1,6 @@
-package dev.first.core.getProducts;
+package dev.first.core.useCase.getProducts;
 
-import dev.first.core.getProducts.io.GetProductsBoundaryOutput;
+import dev.first.core.useCase.getProducts.io.GetProductsBoundaryOutput;
 
 public interface GetProductsBoundary {
 

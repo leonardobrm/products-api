@@ -1,7 +1,7 @@
-package dev.first.core.getProducts.interactor;
+package dev.first.core.useCase.getProducts.interactor;
 
-import dev.first.core.getProducts.GetProductsBoundary;
-import dev.first.core.getProducts.io.GetProductsBoundaryOutput;
+import dev.first.core.useCase.getProducts.GetProductsBoundary;
+import dev.first.core.useCase.getProducts.io.GetProductsBoundaryOutput;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.Date;

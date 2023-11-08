@@ -1,4 +1,4 @@
-package dev.first.core.getProducts.io;
+package dev.first.core.useCase.getProducts.io;
 
 import lombok.Builder;
 
