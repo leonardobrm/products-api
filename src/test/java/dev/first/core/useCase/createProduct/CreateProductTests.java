@@ -1,5 +1,6 @@
 package dev.first.core.useCase.createProduct;
 
+import dev.first.core.data.product.ProductGatewayDataBase;
 import dev.first.core.factory.useCase.createProducts.CreateProductsBoundaryInputFactory;
 import dev.first.core.useCase.createProduct.interactor.CreateProductInteractor;
 import dev.first.core.useCase.createProduct.validator.interactor.CreateProductValidatorInteractor;
@@ -19,8 +20,10 @@ class CreateProductTests {
 
     private final CreateProductBoundary boundary;
 
+    private final ProductGatewayDataBase dataBase;
+
     public CreateProductTests() {
-        final var dataBase = Mockito.mock(ProductGatewayDataBaseImpl.class);
+        dataBase = Mockito.mock(ProductGatewayDataBaseImpl.class);
         final var validator = new CreateProductValidatorInteractor();
         this.boundary = new CreateProductInteractor(dataBase, validator);
     }
@@ -30,6 +33,7 @@ class CreateProductTests {
     void shouldCreateProductSuccessfully() {
         final var input = CreateProductsBoundaryInputFactory.getDefault();
         Assertions.assertDoesNotThrow(() -> {boundary.execute(input);});
+        Mockito.verify(dataBase).save(Mockito.any());
     }
 
     @Test
