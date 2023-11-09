@@ -3,7 +3,7 @@ package dev.first.core.useCase.createProduct;
 import dev.first.core.factory.useCase.createProducts.CreateProductsBoundaryInputFactory;
 import dev.first.core.useCase.createProduct.interactor.CreateProductInteractor;
 import dev.first.core.useCase.createProduct.validator.interactor.CreateProductValidatorInteractor;
-import dev.first.infrastructure.database.repository.ProductGatewayDataBaseMockImpl;
+import dev.first.infrastructure.database.repository.ProductGatewayDataBaseImpl;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -20,7 +20,7 @@ class CreateProductTests {
     private final CreateProductBoundary boundary;
 
     public CreateProductTests() {
-        final var dataBase = Mockito.mock(ProductGatewayDataBaseMockImpl.class);
+        final var dataBase = Mockito.mock(ProductGatewayDataBaseImpl.class);
         final var validator = new CreateProductValidatorInteractor();
         this.boundary = new CreateProductInteractor(dataBase, validator);
     }

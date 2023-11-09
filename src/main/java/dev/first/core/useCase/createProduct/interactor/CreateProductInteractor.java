@@ -23,7 +23,7 @@ public class CreateProductInteractor implements CreateProductBoundary {
         log.debug("input={}", input);
         validator.validate(input);
         final var dataBaseInput = CreateProductEntity.createDataBaseInput(input);
-        dataBase.create(dataBaseInput);
+        dataBase.save(dataBaseInput);
         log.debug("output=N/A");
     }
 }

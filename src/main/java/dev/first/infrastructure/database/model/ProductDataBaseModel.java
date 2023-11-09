@@ -1,23 +1,34 @@
 package dev.first.infrastructure.database.model;
 
-import lombok.*;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Entity(name = "products")
 @Builder
+@Getter
 @AllArgsConstructor
-@ToString
-public class ProductDataBaseModel {
+public class ProductDataBaseModel extends PanacheEntityBase {
 
-    private final String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private final String description;
+    private String description;
 
-    private final String name;
+    private String name;
 
-    private final Integer quantity;
+    private Integer quantity;
 
-    private final LocalDate expiry_date;
+    private LocalDate expiry_date;
+
+    public ProductDataBaseModel() {
+    }
 }
