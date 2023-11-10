@@ -22,7 +22,7 @@ public class GetProductsController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public GetProductsResponse execute(@RestQuery Integer page, @RestQuery Integer size) {
-        log.info("request=N/A");
+        log.info("request={}{}", page, size);
         final var boundaryInput = GetProductsBoundaryInput.builder()
                 .page(page)
                 .size(size)
