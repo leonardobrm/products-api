@@ -4,6 +4,6 @@ import lombok.Builder;
 
 import java.util.List;
 
-@Builder
+@Builder(toBuilder = true)
 public record GetProductsDataBaseOutput(List<GetProductsContentDataBaseOutput> products, GetProductsPageableDataBaseOutput pageable) {
 }

@@ -4,7 +4,7 @@ import lombok.Builder;
 
 import java.util.List;
 
-@Builder
+@Builder(toBuilder = true)
 public record GetProductsBoundaryOutput(List<GetProductsContentBoundaryOutput> products,
                                         GetProductsPageableBoundaryOutput pageable) {
 }

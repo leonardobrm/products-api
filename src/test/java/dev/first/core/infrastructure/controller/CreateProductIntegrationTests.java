@@ -1,4 +1,4 @@
-package dev.first.core.useCase.createProduct;
+package dev.first.core.infrastructure.controller;
 
 import dev.first.core.factory.useCase.createProducts.CreateProductsRequestFactory;
 import io.quarkus.test.junit.QuarkusTest;
@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
-class CreateProductIntegrationTest {
+class CreateProductIntegrationTests {
 
     @Test
     @DisplayName("deve executar com sucesso")
-    void testHelloEndpoint() {
+    void shouldRunSuccessfully() {
         final var requestBody = CreateProductsRequestFactory.getDefault();
 
         given()
