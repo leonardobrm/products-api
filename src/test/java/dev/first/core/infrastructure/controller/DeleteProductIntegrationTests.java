@@ -17,7 +17,7 @@ class DeleteProductIntegrationTests {
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/v1/product/49")
+                .delete("/v1/product/60")
                 .then()
                 .statusCode(204);
     }

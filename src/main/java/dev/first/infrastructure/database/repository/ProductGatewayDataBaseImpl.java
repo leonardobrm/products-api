@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -44,6 +45,27 @@ public class ProductGatewayDataBaseImpl implements ProductGatewayDataBase {
                 .products(content)
                 .pageable(pageable)
                 .build();
+        log.info("output={}", output);
+        return output;
+    }
+
+    @Override
+    public GetValidProductsDataBaseOutput findAllValidPaginated(GetValidProductsDataBaseInput input) {
+        log.info("input={}", input);
+        final var products = find("expiry_date > ?1", LocalDateTime.now()).page(input.page(), input.size());
+
+        final var content = MapperUtils.mapList(products.list(), GetValidProductsContentDataBaseOutput.class);
+        final var pageable = GetValidProductsPageableDataBaseOutput.builder()
+                .pageNumber(products.page().index)
+                .pageSize(products.page().size)
+                .totalElements(products.count())
+                .build();
+
+        final var output = GetValidProductsDataBaseOutput.builder()
+                .products(content)
+                .pageable(pageable)
+                .build();
+
         log.info("output={}", output);
         return output;
     }
