@@ -9,6 +9,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Optional;
+
 @ApplicationScoped
 @RequiredArgsConstructor
 @Slf4j
@@ -44,5 +46,17 @@ public class ProductGatewayDataBaseImpl implements ProductGatewayDataBase {
                 .build();
         log.info("output={}", output);
         return output;
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        deleteById(id);
+    }
+
+    @Override
+    public Optional<GetProductDataBaseOutput> findbyId(Long id) {
+        final var productOptional = findByIdOptional(id);
+        return MapperUtils.mapOptional(productOptional, GetProductDataBaseOutput.class);
     }
 }

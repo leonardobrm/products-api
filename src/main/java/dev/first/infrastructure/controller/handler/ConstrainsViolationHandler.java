@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
 @Slf4j
-public class ControllerHandler implements ExceptionMapper<ConstraintViolationException> {
+public class ConstrainsViolationHandler implements ExceptionMapper<ConstraintViolationException> {
 
     @Override
     public Response toResponse(ConstraintViolationException exception) {

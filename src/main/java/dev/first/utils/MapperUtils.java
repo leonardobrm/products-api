@@ -6,6 +6,7 @@ import dev.first.infrastructure.config.LocalDateTimeAdapter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public final class MapperUtils {
 
@@ -24,5 +25,9 @@ public final class MapperUtils {
         final var output = new ArrayList<T>();
         listSource.forEach(s -> output.add(map(s, classTarget)));
         return output;
+    }
+
+    public static <S, T> Optional<T> mapOptional(final Optional<S> optionalSource, final Class<T> classTarget) {
+        return optionalSource.map(element -> map(element, classTarget));
     }
 }
