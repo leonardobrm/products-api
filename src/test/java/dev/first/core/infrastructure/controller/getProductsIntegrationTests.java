@@ -14,7 +14,7 @@ class getProductsIntegrationTests {
 
     @BeforeAll
     static void insertRecordInDataBase() {
-        // DataBaseUtils.insert(CreateProductsRequestFactory.getDefault());
+        //DataBaseUtils.insert(CreateProductsRequestFactory.getDefault());
         // DataBaseUtils.insert(CreateProductsRequestFactory.getDefault());
     }
 

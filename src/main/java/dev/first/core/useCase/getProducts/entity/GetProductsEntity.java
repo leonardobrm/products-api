@@ -9,8 +9,8 @@ import java.util.Objects;
 @Slf4j
 public final class GetProductsEntity {
 
-    private static Integer PAGEABLE_SIZE_DEFAULT = 5;
-    private static Integer PAGEABLE_PAGE_DEFAULT = 0;
+    private static final Integer PAGEABLE_SIZE_DEFAULT = 5;
+    private static final Integer PAGEABLE_PAGE_DEFAULT = 0;
 
     private GetProductsEntity() {
     }
@@ -20,7 +20,7 @@ public final class GetProductsEntity {
         final var size = Objects.nonNull(input) && Objects.nonNull(input.size()) ? input.size() : PAGEABLE_SIZE_DEFAULT;
         final var page = Objects.nonNull(input) && Objects.nonNull(input.page()) ? input.page() : PAGEABLE_PAGE_DEFAULT;
 
-        final var output =  GetProductsDataBaseInput.builder()
+        final var output = GetProductsDataBaseInput.builder()
                 .size(size)
                 .page(page)
                 .build();
