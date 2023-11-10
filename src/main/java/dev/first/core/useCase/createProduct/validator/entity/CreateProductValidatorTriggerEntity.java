@@ -6,8 +6,8 @@ import dev.first.utils.MapperUtils;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Objects;
 
@@ -23,7 +23,7 @@ public final class CreateProductValidatorTriggerEntity {
         final var violations = new HashSet<>(validator.validate());
 
         if (Objects.nonNull(input) && Objects.nonNull(input.expiry_date()) && !isValidDate(input.expiry_date())) {
-            violations.add(new CreateProductConstraintViolationException<>("padrão da data inválido. Exemplo: 10/10/1999"));
+            violations.add(new CreateProductConstraintViolationException<>("padrão da data inválido. Exemplo: 10-10-1999"));
         }
 
         if (!violations.isEmpty()) {
@@ -37,13 +37,12 @@ public final class CreateProductValidatorTriggerEntity {
         return MapperUtils.map(validateInput, CreateProductValidatorEntity.class);
     }
 
-    private static boolean isValidDate(final String input) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.setLenient(false);
+    private static boolean isValidDate(String dateTimeString) {
         try {
-            dateFormat.parse(input);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate.parse(dateTimeString, formatter);
             return true;
-        } catch (ParseException e) {
+        } catch (Exception e) {
             return false;
         }
     }

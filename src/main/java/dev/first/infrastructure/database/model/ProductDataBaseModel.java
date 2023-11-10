@@ -1,17 +1,15 @@
 package dev.first.infrastructure.database.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity(name = "products")
+@Table
 @Builder
 @Getter
 @AllArgsConstructor
@@ -27,7 +25,7 @@ public class ProductDataBaseModel extends PanacheEntityBase {
 
     private Integer quantity;
 
-    private LocalDate expiry_date;
+    private LocalDateTime expiry_date;
 
     public ProductDataBaseModel() {
     }

@@ -114,7 +114,7 @@ class CreateProductTests {
     void shouldReturnValidationErrorWhenDateIsInvalidInFormat() {
         final var input = CreateProductsBoundaryInputFactory.getInvalidDate();
         final var expectedErrosMessage = List.of(
-                "padrão da data inválido. Exemplo: 10/10/1999"
+                "padrão da data inválido. Exemplo: 10-10-1999"
         );
         final var output = Assertions.assertThrows(ConstraintViolationException.class, () -> boundary.execute(input));
         final var errors = output.getConstraintViolations().stream().map(ConstraintViolation::getMessage).toList();

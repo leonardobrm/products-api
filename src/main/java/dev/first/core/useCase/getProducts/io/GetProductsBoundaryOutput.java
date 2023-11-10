@@ -2,8 +2,9 @@ package dev.first.core.useCase.getProducts.io;
 
 import lombok.Builder;
 
-import java.util.Date;
+import java.util.List;
 
 @Builder
-public record GetProductsBoundaryOutput(String id, String name, Integer quantity, String description, Date expirt_date) {
+public record GetProductsBoundaryOutput(List<GetProductsContentBoundaryOutput> products,
+                                        GetProductsPageableBoundaryOutput pageable) {
 }

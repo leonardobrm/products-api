@@ -1,12 +1,17 @@
 package dev.first.infrastructure.database.repository;
 
 import dev.first.core.data.product.ProductGatewayDataBase;
-import dev.first.core.data.product.io.CreateProductDataBaseInput;
+import dev.first.core.data.product.io.*;
 import dev.first.infrastructure.database.model.ProductDataBaseModel;
+import dev.first.utils.MapperUtils;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @ApplicationScoped
+@RequiredArgsConstructor
+@Slf4j
 public class ProductGatewayDataBaseImpl implements ProductGatewayDataBase {
 
     @Override
@@ -19,5 +24,25 @@ public class ProductGatewayDataBaseImpl implements ProductGatewayDataBase {
                 .expiry_date(input.expiry_date())
                 .build();
         persist(dataBaseModel);
+    }
+
+    @Override
+    public GetProductsDataBaseOutput getAllPaginated(GetProductsDataBaseInput input) {
+        log.info("input={}", input);
+        final var products = findAll().page(input.page(), input.size());
+
+        final var content = MapperUtils.mapList(products.list(), GetProductsContentDataBaseOutput.class);
+        final var pageable = GetProductsPageableDataBaseOutput.builder()
+                .pageNumber(products.page().index)
+                .pageSize(products.page().size)
+                .totalElements(products.count())
+                .build();
+
+        final var output = GetProductsDataBaseOutput.builder()
+                .products(content)
+                .pageable(pageable)
+                .build();
+        log.info("output={}", output);
+        return output;
     }
 }

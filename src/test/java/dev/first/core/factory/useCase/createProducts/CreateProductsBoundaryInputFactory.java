@@ -2,8 +2,6 @@ package dev.first.core.factory.useCase.createProducts;
 
 import dev.first.core.useCase.createProduct.io.CreateProductBoundaryInput;
 
-import java.util.Date;
-
 public final class CreateProductsBoundaryInputFactory {
 
     private CreateProductsBoundaryInputFactory() {
@@ -25,7 +23,7 @@ public final class CreateProductsBoundaryInputFactory {
                 .name("Bola de futebol")
                 .description("bola de futebol")
                 .quantity(-1)
-                .expiry_date("08/10/2023")
+                .expiry_date("08-10-2023")
                 .build();
     }
 
@@ -34,7 +32,7 @@ public final class CreateProductsBoundaryInputFactory {
                 .name("Bola de futebol")
                 .description("bola de futebol")
                 .quantity(0)
-                .expiry_date("08/10/2023")
+                .expiry_date("08-10-2023")
                 .build();
     }
 
@@ -52,7 +50,7 @@ public final class CreateProductsBoundaryInputFactory {
                 .name("Bola de futebol")
                 .description("bola de futebol")
                 .quantity(2)
-                .expiry_date("10/10/1999")
+                .expiry_date("10-10-1999")
                 .build();
     }
 }

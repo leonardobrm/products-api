@@ -4,22 +4,22 @@ import dev.first.core.useCase.createProduct.CreateProductBoundary;
 import dev.first.core.useCase.createProduct.io.CreateProductBoundaryInput;
 import dev.first.infrastructure.controller.request.CreateProductRequest;
 import dev.first.utils.MapperUtils;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.reactive.RestResponse;
 
 @Produces
 @Path("/v1/products")
 @Slf4j
+@RequiredArgsConstructor
 public class CreateProductController {
 
-    @Inject
-    CreateProductBoundary boundary;
+    private final CreateProductBoundary boundary;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
