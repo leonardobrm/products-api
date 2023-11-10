@@ -13,7 +13,7 @@ public interface ProductGatewayDataBase extends PanacheRepositoryBase<ProductDat
 
     void save(final CreateProductDataBaseInput input);
 
-    GetProductsDataBaseOutput getAllPaginated(final GetProductsDataBaseInput input);
+    GetProductsDataBaseOutput findAllPaginated(final GetProductsDataBaseInput input);
 
     void delete(Long id);
 

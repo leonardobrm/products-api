@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
-class DeleteProductIntegrationTests {
+class GetProductIntegrationTests {
 
     @Test
     @DisplayName("deve executar com sucesso")
@@ -17,9 +17,9 @@ class DeleteProductIntegrationTests {
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/v1/product/49")
+                .get("/v1/product/40")
                 .then()
-                .statusCode(204);
+                .statusCode(200);
     }
 
     @Test
@@ -28,7 +28,7 @@ class DeleteProductIntegrationTests {
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/v1/product/99999")
+                .get("/v1/product/99999")
                 .then()
                 .statusCode(404)
                 .body(is("Product not found"));

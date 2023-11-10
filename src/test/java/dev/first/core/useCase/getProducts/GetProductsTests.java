@@ -28,7 +28,7 @@ class GetProductsTests {
     @DisplayName("deve executar com sucesso sem passar nenhum parametro")
     void shouldLoadDataSuccessfullyWithoutParameters() {
         final var input = GetProductsBoundaryInputFactory.getWithoutFields();
-        Mockito.when(dataBase.getAllPaginated(Mockito.any())).thenReturn(GetProductsDataBaseOutputFactory.getDefault());
+        Mockito.when(dataBase.findAllPaginated(Mockito.any())).thenReturn(GetProductsDataBaseOutputFactory.getDefault());
         final var output = boundary.execute(input);
         final var expected = GetProductsBoundaryOutputFactory.getDefault();
         Assertions.assertEquals(output, expected);
@@ -38,7 +38,7 @@ class GetProductsTests {
     @DisplayName("deve executar com sucesso quando não for encontrado valores")
     void shouldReturnEmptyListWhenNoValuesFound() {
         final var input = GetProductsBoundaryInputFactory.getDefault();
-        Mockito.when(dataBase.getAllPaginated(Mockito.any())).thenReturn(GetProductsDataBaseOutputFactory.getWithoutProducts());
+        Mockito.when(dataBase.findAllPaginated(Mockito.any())).thenReturn(GetProductsDataBaseOutputFactory.getWithoutProducts());
         final var output = boundary.execute(input);
         final var expected = GetProductsBoundaryOutputFactory.getWithoutProducts();
         Assertions.assertEquals(output, expected);
@@ -48,7 +48,7 @@ class GetProductsTests {
     @DisplayName("deve executar com sucesso quando o total for maior que o limite")
     void shouldRunSuccessfullyWhenTotalIsGreaterThanLimit() {
         final var input = GetProductsBoundaryInputFactory.getDefault();
-        Mockito.when(dataBase.getAllPaginated(Mockito.any())).thenReturn(GetProductsDataBaseOutputFactory.getWithOneProduct());
+        Mockito.when(dataBase.findAllPaginated(Mockito.any())).thenReturn(GetProductsDataBaseOutputFactory.getWithOneProduct());
         final var output = boundary.execute(input);
         final var expected = GetProductsBoundaryOutputFactory.getWithOneProduct();
         Assertions.assertEquals(output, expected);

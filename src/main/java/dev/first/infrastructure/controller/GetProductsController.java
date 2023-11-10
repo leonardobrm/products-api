@@ -11,6 +11,7 @@ import jakarta.ws.rs.core.MediaType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.reactive.RestQuery;
+import org.jboss.resteasy.reactive.RestResponse;
 
 @Path("/v1/products")
 @Slf4j
@@ -21,7 +22,7 @@ public class GetProductsController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public GetProductsResponse execute(@RestQuery Integer page, @RestQuery Integer size) {
+    public RestResponse<GetProductsResponse> execute(@RestQuery Integer page, @RestQuery Integer size) {
         log.info("request={}{}", page, size);
         final var boundaryInput = GetProductsBoundaryInput.builder()
                 .page(page)
@@ -30,6 +31,6 @@ public class GetProductsController {
         final var listOfProducts = boundary.execute(boundaryInput);
         final var response = MapperUtils.map(listOfProducts, GetProductsResponse.class);
         log.info("response={}", response);
-        return response;
+        return RestResponse.ok(response);
     }
 }

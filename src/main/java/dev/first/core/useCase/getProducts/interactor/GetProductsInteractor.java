@@ -21,7 +21,7 @@ public class GetProductsInteractor implements GetProductsBoundary {
     public GetProductsBoundaryOutput execute(final GetProductsBoundaryInput input) {
         log.info("input={}", input);
         final var dataBaseInput = GetProductsEntity.createDataBaseInput(input);
-        final var findProducts = dataBase.getAllPaginated(dataBaseInput);
+        final var findProducts = dataBase.findAllPaginated(dataBaseInput);
         final var output = MapperUtils.map(findProducts, GetProductsBoundaryOutput.class);
         log.info("output={}", output);
         return output;

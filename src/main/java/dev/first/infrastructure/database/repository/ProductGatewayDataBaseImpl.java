@@ -29,7 +29,7 @@ public class ProductGatewayDataBaseImpl implements ProductGatewayDataBase {
     }
 
     @Override
-    public GetProductsDataBaseOutput getAllPaginated(GetProductsDataBaseInput input) {
+    public GetProductsDataBaseOutput findAllPaginated(GetProductsDataBaseInput input) {
         log.info("input={}", input);
         final var products = findAll().page(input.page(), input.size());
 
