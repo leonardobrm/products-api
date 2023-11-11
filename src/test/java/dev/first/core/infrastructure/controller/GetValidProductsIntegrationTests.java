@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
-class GetValidProductsIntegration {
+class GetValidProductsIntegrationTests {
 
     @Test
     @DisplayName("deve executar com sucesso")

@@ -4,6 +4,7 @@ import dev.first.core.data.product.ProductGatewayDataBase;
 import dev.first.core.data.product.io.*;
 import dev.first.infrastructure.database.model.ProductDataBaseModel;
 import dev.first.utils.MapperUtils;
+import io.quarkus.panache.common.Parameters;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -80,5 +81,17 @@ public class ProductGatewayDataBaseImpl implements ProductGatewayDataBase {
     public Optional<GetProductDataBaseOutput> findbyId(Long id) {
         final var productOptional = findByIdOptional(id);
         return MapperUtils.mapOptional(productOptional, GetProductDataBaseOutput.class);
+    }
+
+    @Override
+    public void update(UpdateProductDataBaseInput input, Long id) {
+        final var updateQuery = "name = :name, description = :description, quantity = :quantity, expiry_date = :expiryDate where id = :id";
+
+        update(updateQuery,
+                Parameters.with("name", input.name())
+                        .and("description", input.description())
+                        .and("quantity", input.quantity())
+                        .and("expiryDate", input.expiry_date())
+                        .and("id", id));
     }
 }

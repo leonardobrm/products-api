@@ -18,4 +18,6 @@ public interface ProductGatewayDataBase extends PanacheRepositoryBase<ProductDat
 
     Optional<GetProductDataBaseOutput> findbyId(final Long id);
 
+    void update(final UpdateProductDataBaseInput input, final Long id);
+
 }
