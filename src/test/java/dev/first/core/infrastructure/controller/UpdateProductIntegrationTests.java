@@ -20,7 +20,7 @@ class UpdateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .put("/v1/product/40")
+                .put("/v1/product/1")
                 .then()
                 .statusCode(204);
     }

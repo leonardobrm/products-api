@@ -17,7 +17,7 @@ class GetProductIntegrationTests {
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/v1/product/40")
+                .get("/v1/product/1")
                 .then()
                 .statusCode(200);
     }
