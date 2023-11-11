@@ -1,6 +1,6 @@
 package dev.first.infrastructure.controller.response;
 
-import java.util.Date;
+import java.util.List;
 
-public record GetProductsResponse(String id, String name, Integer quantity, String description, Date expirt_date) {
+public record GetProductsResponse(List<GetProductsContentResponse> products, GetProductsPageableResponse pageable) {
 }

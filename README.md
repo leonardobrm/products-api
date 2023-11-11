@@ -1,64 +1,145 @@
-# products-api
+# Products-api
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Descrição
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Este é uma API rest em Quarkus para gestão de produtos no banco de dados. Ele fornece endpoints para criar, atualizar, listar, listar não vencidos, listar por ID e excluir registros.
 
-## Running the application in dev mode
+## Tecnologias Utilizadas
 
-You can run your application in dev mode that enables live coding using:
+- Quarkus
+- ORM Panache
+- PostgreSQL
+- Docker e Docker Compose (para desenvolvimento)
+- Maven
+- Lombok
+- Jacoco
+- Flyway
 
-```shell script
-./mvnw compile quarkus:dev
+## Pré-requisitos
+
+Certifique-se de ter as seguintes ferramentas instaladas em seu sistema:
+
+- Java 17
+- Maven
+- Docker e Docker Compose (para execução de banco de dados)
+
+## Executando o Projeto
+
+### Localmente
+
+1. **Clone o Repositório:**
+    ```bash
+    git clone https://github.com/leonardobrm/products-api
+    ```
+
+2. **Navegue até o Diretório do Projeto:**
+    ```bash
+    cd project-api
+    ```
+
+3. **Execute o Aplicativo Quarkus:**
+    ```bash
+    ./mvnw quarkus:dev
+    ```
+
+### Com Docker
+
+1. Certifique-se de ter o Docker e o Docker Compose instalados.
+
+2. Execute o seguinte comando na raiz do projeto:
+    ```bash
+    docker-compose up -d
+    ```
+
+## Uso da API
+
+A API expõe os seguintes endpoints:
+
+- **Criar:**
+    ```bash
+    POST /v1/product
+  
+  {
+    "name": "produto teste",
+    "description": "produto teste",
+    "quantity": 2,
+    "expiry_date": "11-11-2024"
+  }
+    ```
+
+- **Atualizar:**
+    ```bash
+    PUT /v1/product/{id}
+  
+  {
+    "name": "produto teste",
+    "description": "produto teste",
+    "quantity": 2,
+    "expiry_date": "11-11-2024"
+  }
+    ```
+
+- **Listar Todos (paginado):**
+    ```bash
+    GET /v1/product?page=0&size=5
+    ```
+
+- **Listar Todos Válidos (paginado):**
+    ```bash
+    GET /v1/product/validos?page=1&size=3
+    ```
+
+- **Listar por ID:**
+    ```bash
+    GET /v1/product/{id}
+    ```
+
+- **Deletar:**
+    ```bash
+    DELETE /v1/producto/{id}
+    ```
+
+### Exemplos de Requisições
+
+#### Criar um Novo Registro
+```bash
+curl --location 'http://localhost:8080/v1/product' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "produto teste",
+    "description": "produto teste",
+    "quantity": 1,
+    "expiry_date": "12-11-2023"
+}'
+````
+#### Atualizar um registro
+```bash
+curl --location --request PUT 'http://localhost:8080/v1/product/2' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "produto teste",
+    "description": "teste",
+    "quantity": 88,
+    "expiry_date": "11-11-2024"
+}'
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+#### Listar todos(paginado)
+`````bash
+curl --location 'http://localhost:8080/v1/product?page=0&size=10'
+`````
 
-## Packaging and running the application
+#### Listar  todos válidos
+`````bash
+curl --location 'http://localhost:8080/v1/product/valid?page=0&size=10'
+`````
 
-The application can be packaged using:
+#### Listar por id
+`````bash
+curl --location 'http://localhost:8080/v1/product/{id}'
+`````
 
-```shell script
-./mvnw package
-```
-
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/products-api-1.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-## Provided Code
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+#### Deletar um registro
+`````bash
+curl --location --request DELETE 'http://localhost:8080/v1/product/1'
+`````
