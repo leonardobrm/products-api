@@ -1,9 +1,8 @@
 package dev.first.infrastructure.controller;
 
 import dev.first.core.useCase.updateProduct.UpdateProductBoundary;
-import dev.first.core.useCase.updateProduct.io.UpdateProductBoundaryInput;
+import dev.first.infrastructure.controller.mapper.UpdateProductControllerMapper;
 import dev.first.infrastructure.controller.request.UpdateProductRequest;
-import dev.first.utils.MapperUtils;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -27,7 +26,7 @@ public class UpdateProductController {
     @Consumes(MediaType.APPLICATION_JSON)
     public RestResponse<?> execute(@RestPath Long id, UpdateProductRequest request) {
         log.info("request={}{}", id, request);
-        final var boundaryInput = MapperUtils.map(request, UpdateProductBoundaryInput.class);
+        final var boundaryInput = UpdateProductControllerMapper.convertTo(request);
         boundary.execute(boundaryInput, id);
         log.info("output=N/A");
         return RestResponse.status(RestResponse.Status.NO_CONTENT);

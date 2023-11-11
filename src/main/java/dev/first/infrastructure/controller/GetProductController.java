@@ -2,6 +2,7 @@ package dev.first.infrastructure.controller;
 
 import dev.first.core.useCase.getProduct.GetProductBoundary;
 import dev.first.core.useCase.getProduct.io.GetProductBoundaryInput;
+import dev.first.infrastructure.controller.mapper.GetProductControllerMapper;
 import dev.first.infrastructure.controller.response.GetProductResponse;
 import dev.first.utils.MapperUtils;
 import jakarta.ws.rs.GET;
@@ -27,7 +28,7 @@ public class GetProductController {
         log.info("input={}", id);
         final var boundaryInput = GetProductBoundaryInput.builder().id(id).build();
         final var boundaryOutput = boundary.execute(boundaryInput);
-        final var response = MapperUtils.map(boundaryOutput, GetProductResponse.class);
+        final var response = GetProductControllerMapper.convertTo(boundaryOutput);
         log.info("output={}", response);
         return RestResponse.ok(response);
     }

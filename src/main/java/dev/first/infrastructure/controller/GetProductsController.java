@@ -2,8 +2,8 @@ package dev.first.infrastructure.controller;
 
 import dev.first.core.useCase.getProducts.GetProductsBoundary;
 import dev.first.core.useCase.getProducts.io.GetProductsBoundaryInput;
+import dev.first.infrastructure.controller.mapper.GetProductsControllerMapper;
 import dev.first.infrastructure.controller.response.GetProductsResponse;
-import dev.first.utils.MapperUtils;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -29,7 +29,7 @@ public class GetProductsController {
                 .size(size)
                 .build();
         final var listOfProducts = boundary.execute(boundaryInput);
-        final var response = MapperUtils.map(listOfProducts, GetProductsResponse.class);
+        final var response = GetProductsControllerMapper.convertTo(listOfProducts);
         log.info("response={}", response);
         return RestResponse.ok(response);
     }

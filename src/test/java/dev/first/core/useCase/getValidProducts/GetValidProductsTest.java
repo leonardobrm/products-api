@@ -13,13 +13,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 @QuarkusTest
-class GetValidProductsTests {
+class GetValidProductsTest {
 
     private final GetValidProductsBoundary boundary;
 
     private final ProductGatewayDataBase dataBase;
 
-    public GetValidProductsTests() {
+    public GetValidProductsTest() {
         dataBase = Mockito.mock(ProductGatewayDataBaseImpl.class);
         this.boundary = new GetValidProductsInteractor(dataBase);
     }
