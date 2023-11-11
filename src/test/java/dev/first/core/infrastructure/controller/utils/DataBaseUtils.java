@@ -14,13 +14,13 @@ public final class DataBaseUtils {
                 .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .post("/v1/products");
+                .post("/v1/product");
     }
 
     public static void delete(final Long id) {
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/v1/products/" + id);
+                .delete("/v1/product/" + id);
     }
 }

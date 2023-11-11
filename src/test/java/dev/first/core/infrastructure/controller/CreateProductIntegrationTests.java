@@ -20,7 +20,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/products")
+                .post("/v1/product")
                 .then()
                 .statusCode(201);
     }
@@ -34,7 +34,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/products")
+                .post("/v1/product")
                 .then()
                 .statusCode(400);
     }
@@ -48,7 +48,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/products")
+                .post("/v1/product")
                 .then()
                 .statusCode(400);
     }
@@ -62,7 +62,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/products")
+                .post("/v1/product")
                 .then()
                 .statusCode(400);
     }
@@ -76,7 +76,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/products")
+                .post("/v1/product")
                 .then()
                 .statusCode(400);
     }
@@ -90,7 +90,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/products")
+                .post("/v1/product")
                 .then()
                 .statusCode(400);
     }

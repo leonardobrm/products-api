@@ -32,7 +32,7 @@ class GetProductsIntegrationTests {
                 .queryParam("page", 0)
                 .queryParam("size", 2)
                 .when()
-                .get("/v1/products")
+                .get("/v1/product")
                 .then()
                 .statusCode(200);
     }

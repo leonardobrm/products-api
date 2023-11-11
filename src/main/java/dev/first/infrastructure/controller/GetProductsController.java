@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.reactive.RestQuery;
 import org.jboss.resteasy.reactive.RestResponse;
 
-@Path("/v1/products")
+@Path("/v1/product")
 @Slf4j
 @RequiredArgsConstructor
 public class GetProductsController {
