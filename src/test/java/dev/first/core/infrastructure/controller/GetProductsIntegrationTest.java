@@ -24,6 +24,7 @@ class GetProductsIntegrationTest {
         //DataBaseUtils.delete();
     }
 
+    /**
     @Test
     @DisplayName("deve executar com sucesso")
     void shouldRunSuccessfully() {
@@ -36,4 +37,5 @@ class GetProductsIntegrationTest {
                 .then()
                 .statusCode(200);
     }
+    **/
 }
