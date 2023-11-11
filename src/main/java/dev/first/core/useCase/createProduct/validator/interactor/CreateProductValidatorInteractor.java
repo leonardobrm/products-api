@@ -12,8 +12,8 @@ public class CreateProductValidatorInteractor implements CreateProductValidatorB
 
     @Override
     public void validate(CreateProductBoundaryInput input) {
-        log.debug("input={}", input);
+        log.info("input={}", input);
         CreateProductValidatorTriggerEntity.execute(input);
-        log.debug("output=N/A");
+        log.info("output=N/A");
     }
 }

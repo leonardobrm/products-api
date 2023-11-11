@@ -20,10 +20,10 @@ public class CreateProductInteractor implements CreateProductBoundary {
 
     @Override
     public void execute(CreateProductBoundaryInput input) {
-        log.debug("input={}", input);
+        log.info("input={}", input);
         validator.validate(input);
         final var dataBaseInput = CreateProductEntity.createDataBaseInput(input);
         dataBase.save(dataBaseInput);
-        log.debug("output=N/A");
+        log.info("output=N/A");
     }
 }

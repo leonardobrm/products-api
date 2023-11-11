@@ -84,6 +84,7 @@ public class ProductGatewayDataBaseImpl implements ProductGatewayDataBase {
     }
 
     @Override
+    @Transactional
     public void update(UpdateProductDataBaseInput input, Long id) {
         final var updateQuery = "name = :name, description = :description, quantity = :quantity, expiry_date = :expiryDate where id = :id";
 

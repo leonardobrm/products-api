@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 public class UpdateProductValidatorInteractor implements UpdateProductValidatorBoundary {
     @Override
     public void validate(UpdateProductBoundaryInput input) {
-        log.debug("input={}", input);
+        log.info("input={}", input);
         UpdateProductValidatorTriggerEntity.execute(input);
-        log.debug("output=N/A");
+        log.info("output=N/A");
     }
 }

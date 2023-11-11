@@ -18,7 +18,7 @@ public final class UpdateProductValidatorTriggerEntity {
     }
 
     public static void execute(final UpdateProductBoundaryInput input) {
-        log.debug("input={}", input);
+        log.info("input={}", input);
         final var validator = convertToEntity(input);
         final var violations = new HashSet<>(validator.validate());
 
@@ -29,7 +29,7 @@ public final class UpdateProductValidatorTriggerEntity {
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);
         }
-        log.debug("output=N/A");
+        log.info("output=N/A");
     }
 
     private static UpdateProductValidatorEntity convertToEntity(final UpdateProductBoundaryInput input) {
