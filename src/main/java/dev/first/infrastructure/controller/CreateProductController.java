@@ -1,9 +1,8 @@
 package dev.first.infrastructure.controller;
 
 import dev.first.core.useCase.createProduct.CreateProductBoundary;
-import dev.first.core.useCase.createProduct.io.CreateProductBoundaryInput;
+import dev.first.infrastructure.controller.mapper.CreateProductControllerMapper;
 import dev.first.infrastructure.controller.request.CreateProductRequest;
-import dev.first.utils.MapperUtils;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -25,7 +24,7 @@ public class CreateProductController {
     @Consumes(MediaType.APPLICATION_JSON)
     public RestResponse<?> execute(CreateProductRequest request) {
         log.info("request={}", request);
-        final var boundaryInput = MapperUtils.map(request, CreateProductBoundaryInput.class);
+        final var boundaryInput = CreateProductControllerMapper.convertTo(request);
         boundary.execute(boundaryInput);
         return RestResponse.status(RestResponse.Status.CREATED);
     }

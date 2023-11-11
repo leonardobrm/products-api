@@ -17,13 +17,13 @@ import java.util.Optional;
 import static org.mockito.Mockito.never;
 
 @QuarkusTest
-class DeleteProductTests {
+class DeleteProductTest {
 
     private final DeleteProductBoundary boundary;
 
     private final ProductGatewayDataBase dataBase;
 
-    public DeleteProductTests() {
+    public DeleteProductTest() {
         dataBase = Mockito.mock(ProductGatewayDataBaseImpl.class);
         this.boundary = new DeleteProductInteractor(dataBase);
     }

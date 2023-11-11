@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
-class CreateProductIntegrationTests {
+class UpdateProductIntegrationTest {
 
     @Test
     @DisplayName("deve executar com sucesso")
@@ -20,9 +20,23 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/product")
+                .put("/v1/product/1")
                 .then()
-                .statusCode(201);
+                .statusCode(204);
+    }
+
+    @Test
+    @DisplayName("deve ser retornado 404 ao nao encontrar o produto no banco de dados")
+    void shouldReturn404WhenProductIsNotfoundInDatabase() {
+        final var requestBody = CreateProductsRequestFactory.getDefault();
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .put("/v1/product/9999")
+                .then()
+                .statusCode(404);
     }
 
     @Test
@@ -34,7 +48,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/product")
+                .put("/v1/product/40")
                 .then()
                 .statusCode(400);
     }
@@ -48,7 +62,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/product")
+                .put("/v1/product/40")
                 .then()
                 .statusCode(400);
     }
@@ -62,7 +76,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/product")
+                .put("/v1/product/40")
                 .then()
                 .statusCode(400);
     }
@@ -76,7 +90,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/product")
+                .put("/v1/product/40")
                 .then()
                 .statusCode(400);
     }
@@ -90,7 +104,7 @@ class CreateProductIntegrationTests {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/v1/product")
+                .put("/v1/product/40")
                 .then()
                 .statusCode(400);
     }

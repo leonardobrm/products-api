@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.Optional;
 
 @QuarkusTest
-class UpdateProductTests {
+class UpdateProductTest {
 
     private final UpdateProductBoundary boundary;
 
     private final ProductGatewayDataBase dataBase;
 
-    public UpdateProductTests() {
+    public UpdateProductTest() {
         dataBase = Mockito.mock(ProductGatewayDataBaseImpl.class);
         final var validator = new UpdateProductValidatorInteractor();
         this.boundary = new UpdateProductInteractor(dataBase, validator);

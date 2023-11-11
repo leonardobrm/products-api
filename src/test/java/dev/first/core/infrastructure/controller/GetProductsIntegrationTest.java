@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
-class GetProductsIntegrationTests {
+class GetProductsIntegrationTest {
 
     @BeforeAll
     static void insertRecordInDataBase() {

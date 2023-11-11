@@ -16,13 +16,13 @@ import org.mockito.Mockito;
 import java.util.Optional;
 
 @QuarkusTest
-class GetProductTests {
+class GetProductTest {
 
     private final GetProductBoundary boundary;
 
     private final ProductGatewayDataBase dataBase;
 
-    public GetProductTests() {
+    public GetProductTest() {
         dataBase = Mockito.mock(ProductGatewayDataBaseImpl.class);
         this.boundary = new GetProductInteractor(dataBase);
     }
